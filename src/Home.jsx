@@ -1,57 +1,69 @@
-import React, { useContext, useState } from 'react'
-import ReportForm from './ReportForm';
-import DisplayCards from './DisplayCards';
-import { GlobalState } from './GloblalContext';
+import React, { useContext, useState } from "react";
+import ReportForm from "./ReportForm";
+import DisplayCards from "./DisplayCards";
+import { GlobalState } from "./GloblalContext";
 
 const Home = () => {
-  const [flag, setFlag] = useState(false);
   const { data } = useContext(GlobalState);
-  
-  const [filterSeverity, setFilterSeverity] = useState('All');
-  const [sortOrder, setSortOrder] = useState('Newest');
+
+  const [showForm, setShowForm] = useState(false);
+  const [filterSeverity, setFilterSeverity] = useState("All");
+  const [sortOrder, setSortOrder] = useState("Newest");
 
   const filterAndSortData = () => {
-    let filtered = [...data];
+    let filteredData = [...data];
 
-    if (filterSeverity !== 'All') {
-      filtered = filtered.filter(item => item.severity === filterSeverity);
+    if (filterSeverity !== "All") {
+      filteredData = filteredData.filter((item) => item.severity === filterSeverity);
     }
 
-    filtered.sort((a, b) => {
-      if (sortOrder === 'Newest') {
-        return new Date(b.reported_at) - new Date(a.reported_at);
-      } else {
-        return new Date(a.reported_at) - new Date(b.reported_at);
-      }
+    filteredData.sort((a, b) => {
+      const dateA = new Date(a.reported_at);
+      const dateB = new Date(b.reported_at);
+      return sortOrder === "Newest" ? dateB - dateA : dateA - dateB;
     });
 
-    return filtered;
-  }
+    return filteredData;
+  };
 
   return (
-    <div className='flex flex-col items-center p-4 bg-gray-100 min-h-screen'>
-
-      <div className="flex flex-wrap gap-4 mb-4">
-        <select onChange={(e) => setFilterSeverity(e.target.value)} className="border rounded p-2">
+    <div>
+      {/* Top Controls */}
+      <div className="flex flex-wrap gap-4 mb-4 fixed w-full justify-center bg-gray-200 p-5">
+        <select
+          value={filterSeverity}
+          onChange={(e) => setFilterSeverity(e.target.value)}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
           <option value="All">All Severity</option>
           <option value="Low">Low</option>
           <option value="Medium">Medium</option>
           <option value="High">High</option>
         </select>
 
-        <select onChange={(e) => setSortOrder(e.target.value)} className="border rounded p-2">
+        <select
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
           <option value="Newest">Newest First</option>
           <option value="Oldest">Oldest First</option>
         </select>
 
-        <button onClick={() => setFlag(!flag)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          {flag ? 'View Incidents' : 'Report New Incident'}
+        <button
+          onClick={() => setShowForm((prev) => !prev)}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          {showForm ? "View Incidents" : "Report New Incident"}
         </button>
       </div>
 
-      {flag ? <ReportForm /> : <DisplayCards data={filterAndSortData()} />}
+      {/* Main Content */}
+      <div className="flex flex-col items-center bg-gray-100 pt-24 px-4 min-h-screen">
+        {showForm ? <ReportForm /> : <DisplayCards data={filterAndSortData()} />}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

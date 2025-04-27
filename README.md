@@ -1,12 +1,44 @@
-# React + Vite
+Project Sparkle WebPage
+About the Project
+    The Project Sparkle WebPage is a simple web application built using React.
+    It allows users to submit bug reports by entering a title, description, and selecting the severity level (Low, Medium, High).
+    Submitted reports are displayed in a clean, card-style layout.
+    This project demonstrates the use of React Context API for state management, component-based architecture, and Tailwind CSS for basic styling.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Features
+    Submit new bug reports
 
-Currently, two official plugins are available:
+    View all submitted bug reports
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+    Categorize bugs based on severity
 
-## Expanding the ESLint configuration
+    Toggle between form view and report display
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+    Global state management using Context API
+
+    Tech Stack
+    React JS
+
+    Tailwind CSS
+
+    Context API (for global state)
+
+How to Run the Project
+
+Clone the repository
+
+git clone https://github.com/Jaswant10041/project-sparkle.git
+cd project-sparkle
+
+Install dependencies
+
+npm install
+Start the development server If you are using Vite:
+
+npm run dev
+
+Access the application
+
+Open your browser and go to:
+for vite - http://localhost:5173
+
