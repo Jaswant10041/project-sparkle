@@ -1,5 +1,6 @@
 Project Sparkle WebPage
 About the Project
+    Live link -> https://project-sparkle.vercel.app/
     The Project Sparkle WebPage is a simple web application built using React.
     It allows users to submit bug reports by entering a title, description, and selecting the severity level (Low, Medium, High).
     Submitted reports are displayed in a clean, card-style layout.
